@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour {
     public float width = 10f;
     public float height = 5f;
     public float speed = 5f;
+    public float spawnDelay = 0.5f;
 
     private float xMax;
     private float xMin;
@@ -17,6 +18,8 @@ public class EnemySpawner : MonoBehaviour {
         var rightEdge = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distanceToCamera));
         xMin = leftEdge.x;
         xMax = rightEdge.x;
+
+        //InvokeRepeating("SpawnEnemyAtEnemyPositions", 1.0f, 0.2f);
 
         SpawnEnemyAtEnemyPositions();
     }
@@ -36,6 +39,11 @@ public class EnemySpawner : MonoBehaviour {
         {
             movingRight = true;
         }
+
+        if (AllMembersDead())
+        {
+            SpawnEnemyAtEnemyPositions();
+        }
     }
 
     public void OnDrawGizmos()
@@ -43,12 +51,43 @@ public class EnemySpawner : MonoBehaviour {
         Gizmos.DrawWireCube(transform.position, new Vector3(width, height));
     }
 
+    private bool AllMembersDead()
+    {
+        foreach (Transform enemyPosition in transform)
+        {
+            if (enemyPosition.childCount > 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    Transform NextFreePosition()
+    {
+        foreach (Transform enemyPosition in transform)
+        {
+            if (enemyPosition.childCount <= 0)
+            {
+                return enemyPosition;
+            }
+        }
+
+        return null;
+    }
+
     private void SpawnEnemyAtEnemyPositions()
     {
-        foreach(Transform child in transform)
+        var enemyPosition = NextFreePosition();
+        if(enemyPosition == null)
         {
-            var enemy = Instantiate(enemyPrefab, child.transform.position, Quaternion.identity) as GameObject;
-            enemy.transform.parent = child;
+            return;
         }
+
+        var enemy = Instantiate(enemyPrefab, enemyPosition.position, Quaternion.identity) as GameObject;
+        enemy.transform.parent = enemyPosition;
+
+        Invoke("SpawnEnemyAtEnemyPositions", spawnDelay);
     }
 }

@@ -2,18 +2,33 @@
 
 public class EnemyScript : MonoBehaviour {
     public float Hp = 15;
+    public GameObject projectilePrefab;
+    public float projectileSpeed;
+    public float shotsPerSecond = 0.9f;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+
+    // Update is called once per frame
+    void Update() {
+        var probabilityOfFire = shotsPerSecond * Time.deltaTime;
+        if (probabilityOfFire > Random.value)
+        {
+            Fire();
+        }
+
+    }
 
     private void HitByProjectile(ProjectileScript projectile)
     {
+        var velocity = projectile.GetComponent<Rigidbody2D>().velocity;
+        if(velocity.y < 0)
+        {
+            return;
+        }
+
         Debug.Log("trigger, enemy hit!");
         var damage = projectile.GetDamage();
         Hp = Hp - damage;
@@ -22,7 +37,12 @@ public class EnemyScript : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+    }
 
+    private void Fire()
+    {
+        var projectile = Instantiate(this.projectilePrefab, transform.position, Quaternion.identity) as GameObject;
+        projectile.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -1*projectileSpeed, 0);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

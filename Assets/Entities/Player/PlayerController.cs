@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 
     private float xMin;
     private float xMax;
+    private float Hp = 25f;
 
     void Start () {
         var distance = transform.position.z - Camera.main.transform.position.z;
@@ -59,6 +60,33 @@ public class PlayerController : MonoBehaviour {
 
         var newX = Mathf.Clamp(transform.position.x, xMin, xMax);
         transform.position = new Vector3(newX, transform.position.y, transform.position.z);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        var projectile = collider.gameObject.GetComponent<ProjectileScript>();
+        if (projectile)
+        {
+            this.HitByProjectile(projectile);
+        }
+    }
+
+    private void HitByProjectile(ProjectileScript projectile)
+    {
+        var velocity = projectile.GetComponent<Rigidbody2D>().velocity;
+        if (velocity.y > 0)
+        {
+            return;
+        }
+
+        Debug.Log("trigger, player hit!");
+        var damage = projectile.GetDamage();
+        Hp = Hp - damage;
+        Debug.Log(Hp);
+        if (Hp <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }
