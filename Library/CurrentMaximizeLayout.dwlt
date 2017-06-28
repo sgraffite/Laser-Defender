@@ -23,7 +23,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 471}
   m_MaxSize: {x: 14000, y: 14021}
   vertical: 0
-  controlID: 8040
+  controlID: 9936
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 471}
   m_MaxSize: {x: 10000, y: 14021}
   vertical: 1
-  controlID: 8041
+  controlID: 9937
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 221}
   m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
-  controlID: 8042
+  controlID: 9980
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -201,9 +201,9 @@ MonoBehaviour:
     height: 553
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d03a0000
-    m_LastClickedID: 0
-    m_ExpandedIDs: 36f4fffffaf9ffffa0faffffdafbffff00000000
+    m_SelectedIDs: 66c0ffff
+    m_LastClickedID: -16282
+    m_ExpandedIDs: 5cc0ffff7cdbffff94faffffdafbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -279,14 +279,14 @@ MonoBehaviour:
     width: 1141
     height: 553
   m_SceneLighting: 0
-  lastFramingTime: 1277.1546829646506
+  lastFramingTime: 1852.682139756509
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.18266991, y: -0.65334874, z: 5}
+    m_Target: {x: 473.27655, y: 422.27722, z: 0}
     speed: 2
-    m_Value: {x: 0.18266991, y: -0.65334874, z: 5}
+    m_Value: {x: 473.27655, y: 422.27722, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -313,9 +313,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 35.858204
+    m_Target: 1157.3501
     speed: 2
-    m_Value: 35.858204
+    m_Value: 1157.3501
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -389,19 +389,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Entities/Player
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 61
   m_LastFolders:
-  - Assets/Entities/Player
+  - Assets/Scripts
   m_LastFoldersGridSize: 61
   m_LastProjectPath: D:\Stuff\Git\Unity\Laser-Defender
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7a3a0000
-    m_LastClickedID: 14970
-    m_ExpandedIDs: 00000000c0240000ce3a000000ca9a3bffffff7f
+    m_SelectedIDs: fa240000
+    m_LastClickedID: 9466
+    m_ExpandedIDs: 00000000c024000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -454,9 +454,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: d03a0000
-    m_LastClickedInstanceID: 15056
-    m_HadKeyboardFocusLastEvent: 1
+    m_SelectedInstanceIDs: 66c0ffff
+    m_LastClickedInstanceID: -16282
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 2c0000006c050000a425000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

@@ -6,10 +6,13 @@ public class EnemyScript : MonoBehaviour {
     public float projectileSpeed;
     public float shotsPerSecond = 0.9f;
 
+    private ScoreScript scoreInstance;
+
     // Use this for initialization
     void Start () {
-		
-	}
+        scoreInstance = FindObjectOfType<ScoreScript>();
+        //scoreInstance = GameObject.Find("Score").GetComponent<ScoreScript>();
+    }
 
     // Update is called once per frame
     void Update() {
@@ -35,6 +38,7 @@ public class EnemyScript : MonoBehaviour {
         Debug.Log(Hp);
         if (Hp <= 0)
         {
+            scoreInstance.Add(1);
             Destroy(gameObject);
         }
     }
