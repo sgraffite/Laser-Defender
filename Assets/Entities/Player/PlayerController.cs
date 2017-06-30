@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour {
     public float firingRate = 0.2f;
     public GameObject projectilePrefab;
 
+    public AudioClip laserSfx;
+    public AudioClip deathSfx;
+
     private float xMin;
     private float xMax;
     private float Hp = 25f;
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour {
     {
         var projectile = Instantiate(this.projectilePrefab, transform.position, Quaternion.identity) as GameObject;
         projectile.GetComponent<Rigidbody2D>().velocity = new Vector3(0, projectileSpeed, 0);
+        AudioSource.PlayClipAtPoint(laserSfx, projectile.transform.position);
     }
 
     private void HandleInput()
@@ -79,13 +83,13 @@ public class PlayerController : MonoBehaviour {
             return;
         }
 
-        Debug.Log("trigger, player hit!");
         var damage = projectile.GetDamage();
         Hp = Hp - damage;
         Debug.Log(Hp);
         if (Hp <= 0)
         {
-            Destroy(gameObject);
+            AudioSource.PlayClipAtPoint(deathSfx, this.transform.position);
+            Destroy(this.gameObject);
         }
     }
 

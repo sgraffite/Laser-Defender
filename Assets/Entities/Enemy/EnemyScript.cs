@@ -6,6 +6,9 @@ public class EnemyScript : MonoBehaviour {
     public float projectileSpeed;
     public float shotsPerSecond = 0.9f;
 
+    public AudioClip laserSfx;
+    public AudioClip deathSfx;
+
     private ScoreScript scoreInstance;
 
     // Use this for initialization
@@ -38,6 +41,7 @@ public class EnemyScript : MonoBehaviour {
         Debug.Log(Hp);
         if (Hp <= 0)
         {
+            AudioSource.PlayClipAtPoint(deathSfx, this.transform.position);
             scoreInstance.Add(1);
             Destroy(gameObject);
         }
@@ -47,6 +51,7 @@ public class EnemyScript : MonoBehaviour {
     {
         var projectile = Instantiate(this.projectilePrefab, transform.position, Quaternion.identity) as GameObject;
         projectile.GetComponent<Rigidbody2D>().velocity = new Vector3(0, -1*projectileSpeed, 0);
+        AudioSource.PlayClipAtPoint(laserSfx, projectile.transform.position);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
