@@ -11,10 +11,8 @@ public class EnemyScript : MonoBehaviour {
 
     private ScoreScript scoreInstance;
 
-    // Use this for initialization
     void Start () {
         scoreInstance = FindObjectOfType<ScoreScript>();
-        //scoreInstance = GameObject.Find("Score").GetComponent<ScoreScript>();
     }
 
     // Update is called once per frame
@@ -41,10 +39,15 @@ public class EnemyScript : MonoBehaviour {
         Debug.Log(Hp);
         if (Hp <= 0)
         {
-            AudioSource.PlayClipAtPoint(deathSfx, this.transform.position);
-            scoreInstance.Add(1);
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        AudioSource.PlayClipAtPoint(deathSfx, this.transform.position);
+        scoreInstance.Add(1);
+        Destroy(gameObject);
     }
 
     private void Fire()

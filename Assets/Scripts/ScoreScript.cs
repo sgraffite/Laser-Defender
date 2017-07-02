@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ScoreScript : MonoBehaviour {
 
-    private int score = 0;
+    private static int score = 0;
     private Text textComponent;
 
     public void Start()
@@ -17,12 +17,12 @@ public class ScoreScript : MonoBehaviour {
         textComponent.text = GetScore();
     }
 
-    public string GetScore()
+    public static string GetScore()
     {
         return score.ToString("000000000");
     }
 
-    public void Reset()
+    public static void Reset()
     {
         score = 0;
     }

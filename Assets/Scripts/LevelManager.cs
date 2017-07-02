@@ -10,16 +10,9 @@ public class LevelManager : MonoBehaviour {
     void Start(){
         if (SceneManager.GetActiveScene().name.StartsWith("Level_"))
         {
-            InvokeRepeating("CheckForBreakableBricks", 1.0f, 0.2f);
+            //InvokeRepeating("CheckForBreakableBricks", 1.0f, 0.2f);
             currentLevel = SceneManager.GetActiveScene().buildIndex;
         }
-	}
-	
-	public void CheckForBreakableBricks(){
-		var breakableBrick = GameObject.FindGameObjectWithTag("Breakable");
-		if (breakableBrick == null) {
-			LoadNextLevel();
-		}
 	}
 
 	public void LoadLevel(string name){

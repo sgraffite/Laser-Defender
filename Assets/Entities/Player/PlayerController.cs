@@ -15,7 +15,15 @@ public class PlayerController : MonoBehaviour {
     private float xMax;
     private float Hp = 25f;
 
+    private LevelManager levelManagerInstance;
+
     void Start () {
+        levelManagerInstance = FindObjectOfType<LevelManager>();
+        if (levelManagerInstance == null)
+        {
+            throw new System.Exception("Level manager not found!!");
+        }
+
         var distance = transform.position.z - Camera.main.transform.position.z;
         var leftmost = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, distance));
         var rightmost = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, distance));
@@ -88,9 +96,16 @@ public class PlayerController : MonoBehaviour {
         Debug.Log(Hp);
         if (Hp <= 0)
         {
-            AudioSource.PlayClipAtPoint(deathSfx, this.transform.position);
-            Destroy(this.gameObject);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        AudioSource.PlayClipAtPoint(deathSfx, this.transform.position);
+        Destroy(this.gameObject);
+        levelManagerInstance.LoadLevel("Lose Screen");
+
     }
 
 }
