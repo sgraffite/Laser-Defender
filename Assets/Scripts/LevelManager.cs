@@ -8,17 +8,22 @@ public class LevelManager : MonoBehaviour {
     private Scene[] scenes;
 
     void Start(){
-        if (SceneManager.GetActiveScene().name.StartsWith("Level_"))
+        if (GetCurrentLevelName().StartsWith("Level_"))
         {
             //InvokeRepeating("CheckForBreakableBricks", 1.0f, 0.2f);
             currentLevel = SceneManager.GetActiveScene().buildIndex;
         }
 	}
 
+    public string GetCurrentLevelName()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+
 	public void LoadLevel(string name){
 		//Debug.Log("Level load requested " + name);
         SceneManager.LoadScene(name);
-        if (SceneManager.GetActiveScene().name.StartsWith("Level_"))
+        if (GetCurrentLevelName().StartsWith("Level_"))
         {
             currentLevel = SceneManager.GetActiveScene().buildIndex;
         }
@@ -46,7 +51,7 @@ public class LevelManager : MonoBehaviour {
 
         Debug.Log("Currrent Level Index = " + currentLevel);
         SceneManager.LoadScene(UnityEditor.EditorBuildSettings.scenes[sceneIndex].path);
-        if (SceneManager.GetActiveScene().name.StartsWith("Level_"))
+        if (GetCurrentLevelName().StartsWith("Level_"))
         {
             currentLevel = SceneManager.GetActiveScene().buildIndex;
         }
